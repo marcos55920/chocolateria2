@@ -16,71 +16,52 @@
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     position: relative;
-  }
-
-  .logo-lateral {
-    width: 180px; /* tamanho maior */
-    height: auto;
-    position: fixed;
-    border: 3px solid #5d4037;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-    background: white;
-    padding: 10px;
-    z-index: 20;
-    cursor: default;
-    /* left será sobrescrito inline */
-  }
-
-  .logo-animada {
-    animation-name: moverVertical;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-  }
-
-  @keyframes moverVertical {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(20px); }
+    overflow-x: hidden;
   }
 
   .container {
     background-color: white;
-    padding: 20px;
+    padding: 18px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     z-index: 10;
-    position: relative;
     margin-top: 20px;
-    width: fit-content;
+    width: 92vw;
+    max-width: 500px;
   }
 
   h1 {
     color: #5d4037;
+    font-size: 1.4em;
   }
 
   .botoes-container {
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
+    flex-wrap: wrap;
   }
 
   .cartela {
     display: grid;
-    grid-template-columns: repeat(10, 50px);
-    gap: 5px;
-    margin-top: 15px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 12px;
     justify-content: center;
+    width: 100%;
   }
 
   .numero {
-    width: 50px;
-    height: 50px;
+    width: 12vw;
+    max-width: 46px;
+    min-width: 36px;
+    height: 12vw;
+    max-height: 46px;
+    min-height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,56 +69,70 @@
     border-radius: 50%;
     background-color: #fff;
     font-weight: bold;
+    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.2s, transform 0.2s;
+    user-select: none;
+  }
+
+  @media (max-width: 375px), (max-width: 450px) {
+    .container {
+      padding: 7px;
+      margin-top: 7px;
+    }
+    .numero {
+      font-size: 0.9em;
+      width: 11vw;
+      height: 11vw;
+      min-width: 28px;
+      min-height: 28px;
+      max-width: 36px;
+      max-height: 36px;
+    }
+    h1 {
+      font-size: 1em;
+    }
   }
 
   .numero:hover {
     background-color: #e0e0e0;
   }
-
   .selecionado {
     background-color: #ffc107;
     border-color: #ffc107;
     color: white;
   }
-
   .sorteado-certo {
     background-color: #4CAF50;
     border-color: #4CAF50;
     transform: scale(1.1);
   }
-
   .sorteado-errado {
     background-color: #f44336;
     color: white;
   }
 
   button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 18px;
+    font-size: 1em;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     color: white;
   }
-
   #conferirBtn { background-color: #007BFF; }
   #conferirBtn:disabled { background-color: #cccccc; cursor: not-allowed; }
   #novaPartidaBtn { background-color: #28a745; display: none; }
 
   #status-mensagem {
-    margin-top: 15px;
+    margin-top: 12px;
     font-weight: bold;
     color: #333;
+    font-size: 1em;
   }
 </style>
 </head>
 <body>
-
-<!-- Logos maiores, afastadas 20% da lateral esquerda, com animação -->
-<img src="./img/steam.png" alt="Logo 1" class="logo-lateral logo-animada" style="top: 20%; left: 5%; animation-delay: 0s;">
-<img src="./img/044.png" alt="Logo 2" class="logo-lateral logo-animada" style="top: 60%; left: 5%; animation-delay: 1.5s;">
 
 <div class="container">
   <h1>Mega Chocolateria <br> Estudantes: Alessandra, Ana Carolina, Lorena e Walisson</h1>
@@ -149,7 +144,6 @@
   </div>
 
   <div id="cartela-container" class="cartela"></div>
-
   <p id="status-mensagem">0 de 6 números selecionados.</p>
 </div>
 
